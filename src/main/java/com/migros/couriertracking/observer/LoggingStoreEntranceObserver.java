@@ -12,9 +12,17 @@ public class LoggingStoreEntranceObserver implements StoreEntranceObserver {
 
     @Override
     public void onStoreEntrance(StoreEntrance storeEntrance) {
+        if (storeEntrance == null) {
+            logger.warn("Received null store entrance event");
+            return;
+        }
+
+        String courierId = storeEntrance.getCourierId();
+        String storeName = storeEntrance.getStore() != null ? storeEntrance.getStore().getName() : "Unknown Store";
+
         logger.info("Store entrance recorded: Courier '{}' entered store '{}' at {}",
-                storeEntrance.getCourierId(),
-                storeEntrance.getStore().getName(),
+                courierId,
+                storeName,
                 storeEntrance.getEntranceTime());
     }
 }

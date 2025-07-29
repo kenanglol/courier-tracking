@@ -160,17 +160,13 @@ CREATE TABLE store_entrances (
 
 ### Quick Start
 
-```bash
+````bash
 # Clone repository
-git clone <repository-url>
+git clone https://github.com/kenanglol/courier-tracking.git
 cd courier-tracking
 
 # Run with Maven
 mvn spring-boot:run
-
-# Or use the provided script
-./run.bat
-```
 
 ### Building
 
@@ -180,7 +176,7 @@ mvn clean package
 
 # Run JAR
 java -jar target/courier-tracking-0.0.1-SNAPSHOT.jar
-```
+````
 
 ## Design Patterns
 
