@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  courier-tracking:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - courier-network
+
+  # Optional: Add a database for production use
+  # postgres:
+  #   image: postgres:15
+  #   environment:
+  #     POSTGRES_DB: courierdb
+  #     POSTGRES_USER: courier
+  #     POSTGRES_PASSWORD: password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - courier-network
+
+networks:
+  courier-network:
+    driver: bridge
+# volumes:
+#   postgres_data:
